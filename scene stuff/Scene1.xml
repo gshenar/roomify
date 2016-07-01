@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Dip xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="0">
+  <Transforms>
+    <PerspectiveWarp size="1500,997" id="persp1">
+      <MapPoint source="0,0" target="781.6918,125.6754" />
+      <MapPoint source="1,0" target="893.2626,130.0142" />
+      <MapPoint source="0,1" target="772.1355,289.4542" />
+      <MapPoint source="1,1" target="888.6479,295.4932" />
+    </PerspectiveWarp>
+    <PerspectiveWarp size="1500,997" id="persp2">
+      <MapPoint source="0,0" target="1128.675,180.5389" />
+      <MapPoint source="1,0" target="1315.767,190.258" />
+      <MapPoint source="0,1" target="1112.881,440.5237" />
+      <MapPoint source="1,1" target="1296.329,456.3172" />
+    </PerspectiveWarp>
+    <PerspectiveWarp size="1500,997" id="pillowWarp">
+      <MapPoint source="0,0" target="153.1245,743.0294" />
+      <MapPoint source="1,0" target="246.6704,549.8632" />
+      <MapPoint source="0,1" target="470.2088,839.0051" />
+      <MapPoint source="1,1" target="487.2172,574.1608" />
+    </PerspectiveWarp>
+    <PerspectiveWarp size="1500,997" id="mugWarp">
+      <MapPoint source="0,0" target="1323.056,620.3263" />
+      <MapPoint source="1,0" target="1378.941,625.1859" />
+      <MapPoint source="0,1" target="1316.982,696.8639" />
+      <MapPoint source="1,1" target="1374.081,700.5085" />
+    </PerspectiveWarp>
+  </Transforms>
+  <Composite size="1500,997" name="root" mode="normal" depth="0">
+    <Image size="1500,997" name="bg" mode="normal" depth="4" src="https://scene.products.cimpress.io:443/v1/scenes//148e59fb-7a1a-42dd-88df-74302894a416?filename=bg.jpg" />
+    <Composite size="1500,997" name="posterComp" mode="multiply" depth="3">
+      <Document size="1500,997" name="poster1" mode="normal" depth="0" xform="persp1" index="0" page="1" offset="0" />
+    </Composite>
+    <Composite size="1500,997" name="posterComp2" mode="multiply" depth="2">
+      <Document size="1500,997" name="doc2" mode="normal" depth="0" xform="persp2" index="0" page="2" offset="0" />
+    </Composite>
+    <Composite size="1500,997" name="pillowComp" mode="multiply" depth="1">
+      <Document size="1500,997" name="pillowDoc" mode="normal" depth="0" xform="pillowWarp" index="0" page="3" offset="0" />
+    </Composite>
+    <Composite size="1500,997" name="mugComp" mode="multiply" depth="0">
+      <Document size="1500,997" name="mugDoc" mode="normal" depth="0" xform="mugWarp" index="0" page="4" offset="0" />
+    </Composite>
+  </Composite>
+</Dip>
