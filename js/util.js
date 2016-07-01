@@ -19,13 +19,13 @@ function createDocumentFromImages(Images, Sku) {
   }
 
 
-function createDocumentFromUploads(Images, Sku) {
+function createDocumentFromUploads(index, Sku) {
   return new Promise(function(resolve, reject) {
     var data = new FormData();
     //data = new FormData($(".file-uploader")[0]);
     data.append("Sku", Sku);
     data.append("MultipagePdf", false);
-    data.append("Files", $(".file-uploader")[0].files[0]);
+    data.append("Files", $(".file-uploader")[0].files[index]);
     $.ajax({
       url: 'https://api.cimpress.io/vcs/printapi/v1/documents/creators/file',
       data: data,
@@ -119,3 +119,74 @@ function uploadImages(index) {
         });
     });
 };
+
+
+
+function submitOrder(documentIndo) {
+  $.ajax({
+    url: "https://api.cimpress.io/vcs/printapi/v1/orders",
+    type: 'POST',
+    headers : {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiR2FsIFNoZW5hciIsImVtYWlsIjoiZ3NoZW5hckB2aXN0YXByaW50LmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJzY29wZXMiOltdLCJhcHBfbWV0YWRhdGEiOnsidmNzX3BhcnRuZXJfaWQiOiIyMDE2aGFja2F0aG9uLTM5NTM1MzQ4LTM1YmUtNDM3Zi1hMzE5LTUwN2RiMzMyMTg0ZCJ9LCJpc3MiOiJodHRwczovL2NpbXByZXNzLmF1dGgwLmNvbS8iLCJzdWIiOiJhZGZzfGdzaGVuYXJAdmlzdGFwcmludC5jb20iLCJhdWQiOiI0R3RreEpoejBVMWJkZ2dITWRheVNBeTA1SVY0TUVEViIsImV4cCI6MTQ2NzM0ODM4NiwiaWF0IjoxNDY3MzEyMzg2LCJhenAiOiJRa3hPdk56NGZXUkZUNnZjcTc5eWxjSXVvbEZ6MmN3TiJ9.wD7M8ZSzoxvRI1beNBaWgBEs9VDc_Ezbn6I0d7p_3aQ"
+    },
+    data: JSON.stringify(shippingInfo),
+    success: function(response) {
+      console.log(response);
+      $(".actual-order-details").append("<div/>").append("<span>" + JSON.stringify(response) + "</span>");
+      $(".actual-order-details").show();
+    }
+  });
+}
+
+var shippingInfo = 
+{
+  "ShippingLabelDetail": {
+    "MerchantShippingReference": "MerchantShippingReference",
+    "ReturnAddress": {
+      "LastName": "Shenar",
+      "FirstName": "Gal",
+      "MiddleName": "J",
+      "PhoneExtension": "15874",
+      "PostalCode": "02492",
+      "County": "USA",
+      "AddressLine2": "",
+      "City": "MA",
+      "Phone": "123456789",
+      "CountryCode": "US",
+      "CompanyName": "Cimpress",
+      "StateOrRegion": "MA",
+      "AddressLine1": "275 Wyman St"
+    },
+    "MerchantDisplayName": "Test Merchant"
+  },
+  "DestinationAddress": {
+      "LastName": "Shenar",
+      "FirstName": "Gal",
+      "MiddleName": "J",
+      "PhoneExtension": "15874",
+      "PostalCode": "02492",
+      "County": "USA",
+      "AddressLine2": "",
+      "City": "MA",
+      "Phone": "123456789",
+      "CountryCode": "US",
+      "CompanyName": "Cimpress",
+      "StateOrRegion": "MA",
+      "AddressLine1": "275 Wyman St"
+  },
+  "DeliveryOptionId": "2",
+  "Items": [
+    {
+      "Sku": "VIP-47736",
+      "DocumentInstructionSourceVersion": "2.0",
+      "DocumentInstructionSourceUrl": "http://uds.documents.cimpress.io/v2/merchants/vcs/documents/2016hackathon-a3ba5e5e-21ea-4b5e-9018-d5a818ced105/instructions?token=0780f5402e17d236a65d8df3d72fe5a1",
+      "DocumentId": "2016hackathon-a3ba5e5e-21ea-4b5e-9018-d5a818ced105",
+      "Quantity": 1,
+      "PartnerProductName": "Test Product",
+      "PartnerItemId": "Test PartnerItemId"
+    }
+  ],
+  "PartnerOrderId": "Test PartnerOrderId"
+}

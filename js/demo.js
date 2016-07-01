@@ -13,7 +13,7 @@ var handleFileUpload = function(files) {
             docPromise = createDocumentFromJson(JSON.stringify(json));
             docPromise.then(function(doc) {
                 var sceneUrl = getSceneUrl(doc.previewInstructionSourceUrl);
-                $(".new-scene").attr("src", sceneUrl);
+                $(".original-scene").attr("src", sceneUrl);
             });
         })
     }
@@ -26,9 +26,27 @@ var getSceneUrl = function(instructionSourceUrl) {
 var getJsonFromFiles = function(files) {
     return new Promise(function(resolve, reject) {
         var promises = [];
+        var documentPromises =[];
+
         for(var i = 0; i < 4; i++) {
             promises.push(uploadImages(i));
         }
+
+        documentPromises.push(createDocumentFromUploads(0, "VIP-47736")); //pillow
+        documentPromises.push(createDocumentFromUploads(1, "VIP-47736")); //pillow
+        documentPromises.push(createDocumentFromUploads(2, "VIP-47736")); //mug
+        documentPromises.push(createDocumentFromUploads(3, "VIP-47736")); //mug
+
+        //TODO - pass in the documents to this.
+        submitOrder();
+
+        Promise.all(documentPromises).then(function(values) {
+            for(var i = 0; i < values.length; i++) {
+                $(".order-details").append("<div/>").append("<span> Document Id:" +  values[i].DocumentId + "</span>" + "<span> Instruction Source:" +  values[i].InstructionSourceUrl + "</span>");
+                $(".order-details").show();
+            }
+        });
+
         Promise.all(promises).then(function(values) {
             for(var i = 0; i < values.length; i++) {
                 sampleJson.document.surfaces[i].images[0].printUrl = values[i];
@@ -114,3 +132,4 @@ var sampleJson =  {
     ]
   },
 }
+
