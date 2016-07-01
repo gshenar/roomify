@@ -132,9 +132,9 @@ function submitOrder(docInfo1, docInfo2, docInfo3, docInfo4) {
 
   var items = [];
   items.push(getOrderItem(docInfo1));
- // items.push(getOrderItem(docInfo2));
- //  items.push(getOrderItem(docInfo3));
- // items.push(getOrderItem(docInfo4));
+  items.push(getOrderItem(docInfo2));
+  items.push(getOrderItem(docInfo3));
+  items.push(getOrderItem(docInfo4));
   shippingInfo.Items = items;
 
   $.ajax({
@@ -148,7 +148,8 @@ function submitOrder(docInfo1, docInfo2, docInfo3, docInfo4) {
     data: JSON.stringify(shippingInfo),
     success: function(response) {
       console.log(response);
-      $(".actual-order-details").append("<div/>").append("<span>" + JSON.stringify(response, null, 4) + "</span>");
+      $(".actual-order-details").append("<pre class='pre-block' style='text-align: left'/>");
+      $(".pre-block").append("<code>" + JSON.stringify(response, null, 4) + "</code>");
       $(".actual-order-details").show();
     }
   });
@@ -214,6 +215,6 @@ function getOrderItem(docInfo) {
       "DocumentId": docInfo.DocumentId,
       "Quantity": 1,
       "PartnerProductName": "Test Product",
-      "PartnerItemId": "Test PartnerItemId"
+      "PartnerItemId": "Test PartnerItemId" + Math.random()
     }
 }
