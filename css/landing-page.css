@@ -29,6 +29,18 @@ h6 {
     color: #2742c9;
 }
 
+.side-by-side-scenes {
+    padding: 10px;
+}
+
+.file-uploader {
+   margin: 0 auto
+}
+
+.content {
+      text-align: center;
+}
+
 .topnav {
     font-size: 14px; 
 }
