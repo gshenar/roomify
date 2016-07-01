@@ -117,13 +117,29 @@ function uploadImages(index) {
             contentType: false,
             processData: false,
             success: function(data) {
+              window["upload" + index] = 'http://uploads.documents.cimpress.io:80/v1/uploads/' + data[0].uploadId + '/preview'; 
               resolve('http://uploads.documents.cimpress.io:80/v1/uploads/' + data[0].uploadId + '/preview');
             },
         });
     });
 };
 
+var getMugScene = function(index) {
+    switch(index) {
+      case 0:
+          return "http://rendering.documents.cimpress.io/v1/vp/preview?width=200&imageuris=" + encodeURIComponent(window["upload" + index]) + "&scene=" + encodeURIComponent("http://www.vistaprint.com/documents/api/scene/1314");    
+    case 1:
+          return "http://rendering.documents.cimpress.io/v1/vp/preview?width=200&imageuris=" + encodeURIComponent(window["upload" + index]) + "&scene=" + encodeURIComponent("http://www.vistaprint.com/documents/api/scene/1893");    
+    case 2:
+          return "http://rendering.documents.cimpress.io/v1/vp/preview?width=200&imageuris=" + encodeURIComponent(window["upload" + index]) + "&scene=" + encodeURIComponent("http://www.vistaprint.com/documents/api/scene/1382");    
+    case 3:
+          return "http://rendering.documents.cimpress.io/v1/vp/preview?width=200&imageuris=" + encodeURIComponent(window["upload" + index]) + "&scene=" + encodeURIComponent("http://www.vistaprint.com/documents/api/scene/1314");    
+    }
+}
 
+var getPosterScene = function(instructionSourceUrl) {
+    return "http://rendering.documents.cimpress.io/v1/vp/preview?width=400&instructions_uri=" + encodeURIComponent(instructionSourceUrl) + "&scene=https%3A%2F%2Fscene.products.cimpress.io%2Fv1%2Fscenes%2F148e59fb-7a1a-42dd-88df-74302894a416&showerr=1"    
+}
 
 function submitOrder(docInfo1, docInfo2, docInfo3, docInfo4) {
   // shippingInfo.Items[0].DocumentInstructionSourceUrl = docInfo.DocumentInstructionSourceUrl;
