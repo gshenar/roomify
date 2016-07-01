@@ -108,7 +108,7 @@ function uploadImages(index) {
 
         $.ajax({
             type: 'POST',
-            url: 'http://uploads.documents.cimpress.io/v1/uploads?process=%7B%22type%22%3A%22image%22%7D',
+            url: 'https://uploads.documents.cimpress.io/v1/uploads?process=%7B%22type%22%3A%22image%22%7D',
             data: data,
             dataType: "json",
             contentType: false,
