@@ -42,7 +42,7 @@ var getJsonFromFiles = function(files) {
 
         Promise.all(documentPromises).then(function(values) {
             for(var i = 0; i < values.length; i++) {
-                $(".order-details").append("<div/>").append("<span> Document Id:" +  values[i].DocumentId + "</span>" + "<span> Instruction Source:" +  values[i].InstructionSourceUrl + "</span>");
+                $(".order-details").append("<div><span> Document Id:" +  values[i].DocumentId + "</span> <br>" + "<span> Instruction Source:" +  values[i].InstructionSourceUrl + "</span> <img src='" + getMugScene(i) + "'</img> </div>");
                 $(".order-details").show();
             }
             submitOrder({ 
