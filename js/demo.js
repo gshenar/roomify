@@ -32,19 +32,39 @@ var getJsonFromFiles = function(files) {
             promises.push(uploadImages(i));
         }
 
-        documentPromises.push(createDocumentFromUploads(0, "VIP-47736")); //pillow
-        documentPromises.push(createDocumentFromUploads(1, "VIP-47736")); //pillow
-        documentPromises.push(createDocumentFromUploads(2, "VIP-47736")); //mug
-        documentPromises.push(createDocumentFromUploads(3, "VIP-47736")); //mug
+        documentPromises.push(createDocumentFromUploads(0, "VIP-2638")); //pillow
+        documentPromises.push(createDocumentFromUploads(1, "VIP-2638")); //pillow
+        documentPromises.push(createDocumentFromUploads(2, "VIP-44614")); //mug
+        documentPromises.push(createDocumentFromUploads(3, "VIP-44614")); //mug
 
         //TODO - pass in the documents to this.
-        submitOrder();
+        
 
         Promise.all(documentPromises).then(function(values) {
             for(var i = 0; i < values.length; i++) {
                 $(".order-details").append("<div/>").append("<span> Document Id:" +  values[i].DocumentId + "</span>" + "<span> Instruction Source:" +  values[i].InstructionSourceUrl + "</span>");
                 $(".order-details").show();
             }
+            submitOrder({ 
+                DocumentId: values[0].DocumentId,
+                Sku: "VIP-2638",
+                DocumentInstructionSourceUrl: values[0].InstructionSourceUrl
+            },
+            { 
+                DocumentId: values[1].DocumentId,
+                Sku: "VIP-2638",
+                DocumentInstructionSourceUrl: values[1].InstructionSourceUrl
+            },
+            { 
+                DocumentId: values[2].DocumentId,
+                Sku: "VIP-44614",
+                DocumentInstructionSourceUrl: values[2].InstructionSourceUrl
+            },
+            { 
+                DocumentId: values[3].DocumentId,
+                Sku: "VIP-44614",
+                DocumentInstructionSourceUrl: values[3].InstructionSourceUrl
+            });
         });
 
         Promise.all(promises).then(function(values) {

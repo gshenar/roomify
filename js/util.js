@@ -1,3 +1,6 @@
+var authKey = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiR2FsIFNoZW5hciIsImVtYWlsIjoiZ3NoZW5hckB2aXN0YXByaW50LmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJzY29wZXMiOltdLCJhcHBfbWV0YWRhdGEiOnsidmNzX3BhcnRuZXJfaWQiOiIyMDE2aGFja2F0aG9uLTM5NTM1MzQ4LTM1YmUtNDM3Zi1hMzE5LTUwN2RiMzMyMTg0ZCJ9LCJpc3MiOiJodHRwczovL2NpbXByZXNzLmF1dGgwLmNvbS8iLCJzdWIiOiJhZGZzfGdzaGVuYXJAdmlzdGFwcmludC5jb20iLCJhdWQiOiI0R3RreEpoejBVMWJkZ2dITWRheVNBeTA1SVY0TUVEViIsImV4cCI6MTQ2NzQxMDkwNCwiaWF0IjoxNDY3Mzc0OTA0LCJhenAiOiJRa3hPdk56NGZXUkZUNnZjcTc5eWxjSXVvbEZ6MmN3TiJ9.MIwAUWXlAA2HTmtAxeKjtoY41HvDHu2HnEvZLZ4BQPM";
+
+
 function createDocumentFromImages(Images, Sku) {
     return new Promise(function(resolve, reject) {
       fetch('https://api.cimpress.io/vcs/printapi/v1/documents/creators/url', {
@@ -5,7 +8,7 @@ function createDocumentFromImages(Images, Sku) {
         headers : {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiR2FsIFNoZW5hciIsImVtYWlsIjoiZ3NoZW5hckB2aXN0YXByaW50LmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJzY29wZXMiOltdLCJhcHBfbWV0YWRhdGEiOnsidmNzX3BhcnRuZXJfaWQiOiIyMDE2aGFja2F0aG9uLTM5NTM1MzQ4LTM1YmUtNDM3Zi1hMzE5LTUwN2RiMzMyMTg0ZCJ9LCJpc3MiOiJodHRwczovL2NpbXByZXNzLmF1dGgwLmNvbS8iLCJzdWIiOiJhZGZzfGdzaGVuYXJAdmlzdGFwcmludC5jb20iLCJhdWQiOiI0R3RreEpoejBVMWJkZ2dITWRheVNBeTA1SVY0TUVEViIsImV4cCI6MTQ2NzM0ODM4NiwiaWF0IjoxNDY3MzEyMzg2LCJhenAiOiJRa3hPdk56NGZXUkZUNnZjcTc5eWxjSXVvbEZ6MmN3TiJ9.wD7M8ZSzoxvRI1beNBaWgBEs9VDc_Ezbn6I0d7p_3aQ"
+          'Authorization': authKey
         },
         body: JSON.stringify({
           Images: Images,
@@ -33,7 +36,7 @@ function createDocumentFromUploads(index, Sku) {
       contentType: false,
       processData: false,
       headers : {
-        'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiR2FsIFNoZW5hciIsImVtYWlsIjoiZ3NoZW5hckB2aXN0YXByaW50LmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJzY29wZXMiOltdLCJhcHBfbWV0YWRhdGEiOnsidmNzX3BhcnRuZXJfaWQiOiIyMDE2aGFja2F0aG9uLTM5NTM1MzQ4LTM1YmUtNDM3Zi1hMzE5LTUwN2RiMzMyMTg0ZCJ9LCJpc3MiOiJodHRwczovL2NpbXByZXNzLmF1dGgwLmNvbS8iLCJzdWIiOiJhZGZzfGdzaGVuYXJAdmlzdGFwcmludC5jb20iLCJhdWQiOiI0R3RreEpoejBVMWJkZ2dITWRheVNBeTA1SVY0TUVEViIsImV4cCI6MTQ2NzM0ODM4NiwiaWF0IjoxNDY3MzEyMzg2LCJhenAiOiJRa3hPdk56NGZXUkZUNnZjcTc5eWxjSXVvbEZ6MmN3TiJ9.wD7M8ZSzoxvRI1beNBaWgBEs9VDc_Ezbn6I0d7p_3aQ"
+        'Authorization': authKey
       },
       type: 'POST',
       success: function(data){
@@ -58,7 +61,7 @@ function createDocumentFromMultipleUploads(Images, Sku) {
       contentType: false,
       processData: false,
       headers : {
-        'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiR2FsIFNoZW5hciIsImVtYWlsIjoiZ3NoZW5hckB2aXN0YXByaW50LmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJzY29wZXMiOltdLCJhcHBfbWV0YWRhdGEiOnsidmNzX3BhcnRuZXJfaWQiOiIyMDE2aGFja2F0aG9uLTM5NTM1MzQ4LTM1YmUtNDM3Zi1hMzE5LTUwN2RiMzMyMTg0ZCJ9LCJpc3MiOiJodHRwczovL2NpbXByZXNzLmF1dGgwLmNvbS8iLCJzdWIiOiJhZGZzfGdzaGVuYXJAdmlzdGFwcmludC5jb20iLCJhdWQiOiI0R3RreEpoejBVMWJkZ2dITWRheVNBeTA1SVY0TUVEViIsImV4cCI6MTQ2NzM0ODM4NiwiaWF0IjoxNDY3MzEyMzg2LCJhenAiOiJRa3hPdk56NGZXUkZUNnZjcTc5eWxjSXVvbEZ6MmN3TiJ9.wD7M8ZSzoxvRI1beNBaWgBEs9VDc_Ezbn6I0d7p_3aQ"
+        'Authorization': authKey
       },
       type: 'POST',
       success: function(data){
@@ -122,19 +125,30 @@ function uploadImages(index) {
 
 
 
-function submitOrder(documentIndo) {
+function submitOrder(docInfo1, docInfo2, docInfo3, docInfo4) {
+  // shippingInfo.Items[0].DocumentInstructionSourceUrl = docInfo.DocumentInstructionSourceUrl;
+  // shippingInfo.Items[0].DocumentId = docInfo.DocumentId;
+  // shippingInfo.Items[0].Sku = docInfo.Sku;
+
+  var items = [];
+  items.push(getOrderItem(docInfo1));
+ // items.push(getOrderItem(docInfo2));
+ //  items.push(getOrderItem(docInfo3));
+ // items.push(getOrderItem(docInfo4));
+  shippingInfo.Items = items;
+
   $.ajax({
     url: "https://api.cimpress.io/vcs/printapi/v1/orders",
     type: 'POST',
     headers : {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiR2FsIFNoZW5hciIsImVtYWlsIjoiZ3NoZW5hckB2aXN0YXByaW50LmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJzY29wZXMiOltdLCJhcHBfbWV0YWRhdGEiOnsidmNzX3BhcnRuZXJfaWQiOiIyMDE2aGFja2F0aG9uLTM5NTM1MzQ4LTM1YmUtNDM3Zi1hMzE5LTUwN2RiMzMyMTg0ZCJ9LCJpc3MiOiJodHRwczovL2NpbXByZXNzLmF1dGgwLmNvbS8iLCJzdWIiOiJhZGZzfGdzaGVuYXJAdmlzdGFwcmludC5jb20iLCJhdWQiOiI0R3RreEpoejBVMWJkZ2dITWRheVNBeTA1SVY0TUVEViIsImV4cCI6MTQ2NzM0ODM4NiwiaWF0IjoxNDY3MzEyMzg2LCJhenAiOiJRa3hPdk56NGZXUkZUNnZjcTc5eWxjSXVvbEZ6MmN3TiJ9.wD7M8ZSzoxvRI1beNBaWgBEs9VDc_Ezbn6I0d7p_3aQ"
+      'Authorization': authKey
     },
     data: JSON.stringify(shippingInfo),
     success: function(response) {
       console.log(response);
-      $(".actual-order-details").append("<div/>").append("<span>" + JSON.stringify(response) + "</span>");
+      $(".actual-order-details").append("<div/>").append("<span>" + JSON.stringify(response, null, 4) + "</span>");
       $(".actual-order-details").show();
     }
   });
@@ -179,7 +193,7 @@ var shippingInfo =
   "DeliveryOptionId": "2",
   "Items": [
     {
-      "Sku": "VIP-47736",
+      "Sku": "VIP-2638",
       "DocumentInstructionSourceVersion": "2.0",
       "DocumentInstructionSourceUrl": "http://uds.documents.cimpress.io/v2/merchants/vcs/documents/2016hackathon-a3ba5e5e-21ea-4b5e-9018-d5a818ced105/instructions?token=0780f5402e17d236a65d8df3d72fe5a1",
       "DocumentId": "2016hackathon-a3ba5e5e-21ea-4b5e-9018-d5a818ced105",
@@ -189,4 +203,17 @@ var shippingInfo =
     }
   ],
   "PartnerOrderId": "Test PartnerOrderId"
+}
+
+
+function getOrderItem(docInfo) {
+    return {
+      "Sku": docInfo.Sku,
+      "DocumentInstructionSourceVersion": "2.0",
+      "DocumentInstructionSourceUrl": docInfo.DocumentInstructionSourceUrl,
+      "DocumentId": docInfo.DocumentId,
+      "Quantity": 1,
+      "PartnerProductName": "Test Product",
+      "PartnerItemId": "Test PartnerItemId"
+    }
 }
